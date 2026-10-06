@@ -1,0 +1,3055 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Kitchen | Know What's Fresh</title>
+
+<style>
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: #f6faf7;
+    color: #18352a;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 72px;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid #e5eee8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: 800;
+    color: #176b45;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #e1f4e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #52645b;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #198754;
+}
+
+.nav-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #f1f6f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #176b45;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.menu-btn {
+    display: none;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    width: 88%;
+    max-width: 1350px;
+    margin: auto;
+}
+
+section {
+    padding: 42px 0;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 55px 0 30px;
+}
+
+.hero-content {
+    background: linear-gradient(135deg, #e8f7ee, #f7fbf8);
+    border-radius: 28px;
+    padding: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-content::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    background: #d8f0e2;
+    border-radius: 50%;
+    right: -100px;
+    top: -100px;
+}
+
+.hero-text {
+    max-width: 650px;
+    z-index: 1;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    background: #dff3e7;
+    color: #176b45;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #198754;
+}
+
+.hero p {
+    color: #617168;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 590px;
+    margin-bottom: 27px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    background: #198754;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #146c43;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: white;
+    color: #176b45;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: 1px solid #d6e7dc;
+    transition: 0.2s;
+}
+
+.secondary-btn:hover {
+    background: #f0f8f3;
+}
+
+.hero-visual {
+    width: 280px;
+    height: 280px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 110px;
+    z-index: 1;
+    box-shadow: 0 20px 50px rgba(30, 80, 50, 0.12);
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 22px;
+}
+
+.section-header h2 {
+    font-size: 26px;
+}
+
+.section-header p {
+    color: #74827b;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid #e5eee8;
+    box-shadow: 0 8px 25px rgba(20, 70, 40, 0.04);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.green {
+    background: #e4f6ea;
+}
+
+.yellow {
+    background: #fff4d9;
+}
+
+.red {
+    background: #ffe6e6;
+}
+
+.blue {
+    background: #e4efff;
+}
+
+.stat-number {
+    font-size: 31px;
+    font-weight: 800;
+    margin-top: 18px;
+}
+
+.stat-label {
+    color: #718078;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+/* =========================
+   OVERVIEW
+========================= */
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid #e5eee8;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.donut-area {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding-top: 15px;
+}
+
+.donut {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #198754 0deg 240deg,
+        #f2b84b 240deg 310deg,
+        #e45757 310deg 360deg
+    );
+    position: relative;
+    flex-shrink: 0;
+}
+
+.donut::after {
+    content: "";
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    background: white;
+    border-radius: 50%;
+    left: 32.5px;
+    top: 32.5px;
+}
+
+.donut-center {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.donut-center strong {
+    font-size: 25px;
+}
+
+.donut-center span {
+    color: #7b8981;
+    font-size: 11px;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.dot.green-dot {
+    background: #198754;
+}
+
+.dot.yellow-dot {
+    background: #f2b84b;
+}
+
+.dot.red-dot {
+    background: #e45757;
+}
+
+/* =========================
+   INVENTORY
+========================= */
+
+.inventory-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #dce8e1;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+}
+
+.search-box input:focus {
+    border-color: #198754;
+}
+
+.filter-select {
+    padding: 13px 16px;
+    border: 1px solid #dce8e1;
+    border-radius: 12px;
+    background: white;
+    color: #44544b;
+    outline: none;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.food-card {
+    background: white;
+    border: 1px solid #e5eee8;
+    border-radius: 18px;
+    padding: 18px;
+    transition: 0.2s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(20, 70, 40, 0.08);
+}
+
+.food-icon {
+    width: 55px;
+    height: 55px;
+    background: #f0f7f2;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 29px;
+    margin-bottom: 13px;
+}
+
+.food-name {
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.food-category {
+    color: #7b8981;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.food-details {
+    margin: 15px 0;
+    display: grid;
+    gap: 7px;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.detail span:first-child {
+    color: #7b8981;
+}
+
+.status {
+    display: inline-flex;
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.status.fresh {
+    background: #e3f6e9;
+    color: #187443;
+}
+
+.status.expiring {
+    background: #fff2d1;
+    color: #996a00;
+}
+
+.status.expired {
+    background: #ffe2e2;
+    color: #bd3535;
+}
+
+.delete-btn {
+    float: right;
+    background: #fff0f0;
+    color: #d34a4a;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+/* =========================
+   RECIPES
+========================= */
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.recipe-card {
+    background: white;
+    border: 1px solid #e5eee8;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-4px);
+}
+
+.recipe-image {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    background: #eef8f1;
+}
+
+.recipe-body {
+    padding: 18px;
+}
+
+.recipe-body h3 {
+    margin-bottom: 7px;
+}
+
+.recipe-body p {
+    color: #74827b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.recipe-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    padding: 5px 8px;
+    border-radius: 7px;
+    background: #edf7f0;
+    color: #187443;
+}
+
+/* =========================
+   OCR
+========================= */
+
+.ocr-section {
+    background: #123d2b;
+    border-radius: 25px;
+    color: white;
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ocr-section h2 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.ocr-section p {
+    color: #bdd4c7;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.coming-badge {
+    display: inline-block;
+    background: #f5bd4e;
+    color: #493300;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.ocr-button {
+    background: white;
+    color: #176b45;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    margin-top: 18px;
+}
+
+.ocr-icon {
+    font-size: 100px;
+    opacity: 0.85;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.about-card {
+    background: white;
+    border: 1px solid #e5eee8;
+    border-radius: 20px;
+    padding: 28px;
+}
+
+.about-card h3 {
+    margin-bottom: 12px;
+}
+
+.about-card p {
+    color: #697a71;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.feature-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.feature-list div {
+    padding: 10px 13px;
+    background: #f5f9f6;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 35, 25, 0.55);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 100%;
+    max-width: 570px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 24px;
+    padding: 28px;
+    animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.close-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+    background: #f2f5f3;
+    font-size: 18px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #52645b;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 13px;
+    border: 1px solid #dce7e0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 13px;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #198754;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+/* =========================
+   OCR MODAL
+========================= */
+
+.scanner-box {
+    border: 2px dashed #cbded2;
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    background: #f8fbf9;
+}
+
+.scanner-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.scanner-box h3 {
+    margin-bottom: 8px;
+}
+
+.scanner-box p {
+    color: #718078;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.roadmap {
+    margin-top: 20px;
+    display: grid;
+    gap: 9px;
+}
+
+.roadmap-item {
+    background: #f3f8f4;
+    padding: 10px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: #183d2c;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(15px);
+    transition: 0.3s;
+    z-index: 3000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 50px;
+    background: #102d20;
+    color: white;
+    padding: 35px 6%;
+    text-align: center;
+}
+
+footer p {
+    color: #a9c0b4;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #e5eee8;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .hero-content {
+        padding: 35px;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .overview-grid,
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recipe-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ocr-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 25px;
+    }
+
+    .hero-content {
+        padding: 28px 22px;
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-number {
+        font-size: 25px;
+    }
+
+    .donut-area {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .inventory-grid,
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    section {
+        padding: 30px 0;
+    }
+}
+
+/* =========================
+   TEAM MEMBERS
+========================= */
+
+.team-card {
+    grid-column: 1 / -1;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.team-member {
+    text-align: center;
+    background: #f5f9f6;
+    border: 1px solid #e2ece5;
+    border-radius: 16px;
+    padding: 22px 12px;
+    transition: 0.25s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(20, 70, 40, 0.08);
+}
+
+.member-avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #198754,
+        #43b879
+    );
+
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.team-member h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.team-member span {
+    color: #7b8981;
+    font-size: 11px;
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark-mode {
+    background: #0d1712;
+    color: #edf6f0;
+}
+
+body.dark-mode .navbar {
+    background: #14231b;
+    border-color: #26392f;
+}
+
+body.dark-mode .logo {
+    color: #65d497;
+}
+
+body.dark-mode .logo-icon {
+    background: #20392c;
+}
+
+body.dark-mode .nav-links a {
+    color: #b8c9bf;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: #65d497;
+}
+
+body.dark-mode .icon-btn {
+    background: #203229;
+    color: #edf6f0;
+}
+
+body.dark-mode .hero-content {
+    background: linear-gradient(
+        135deg,
+        #172f23,
+        #12231b
+    );
+}
+
+body.dark-mode .hero h1 {
+    color: #f0f7f3;
+}
+
+body.dark-mode .hero h1 span {
+    color: #65d497;
+}
+
+body.dark-mode .hero p {
+    color: #a9bbb0;
+}
+
+body.dark-mode .hero-visual {
+    background: #1b3025;
+}
+
+body.dark-mode .badge {
+    background: #203c2d;
+    color: #65d497;
+}
+
+body.dark-mode .secondary-btn {
+    background: #1b2d23;
+    color: #65d497;
+    border-color: #345342;
+}
+
+body.dark-mode .secondary-btn:hover {
+    background: #263d30;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .panel,
+body.dark-mode .food-card,
+body.dark-mode .recipe-card,
+body.dark-mode .about-card,
+body.dark-mode .modal {
+    background: #14231b;
+    border-color: #293d32;
+    color: #edf6f0;
+}
+
+body.dark-mode .stat-label,
+body.dark-mode .section-header p,
+body.dark-mode .food-category,
+body.dark-mode .recipe-body p,
+body.dark-mode .about-card p,
+body.dark-mode .detail span:first-child {
+    color: #9cafa3;
+}
+
+body.dark-mode .food-icon {
+    background: #20352a;
+}
+
+body.dark-mode .team-member {
+    background: #1b3025;
+    border-color: #30483a;
+}
+
+body.dark-mode .team-member span {
+    color: #9cafa3;
+}
+
+body.dark-mode .search-box input,
+body.dark-mode .filter-select {
+    background: #14231b;
+    color: #edf6f0;
+    border-color: #30483a;
+}
+
+body.dark-mode .search-box input::placeholder {
+    color: #82968b;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background: #17291f;
+    color: #edf6f0;
+    border-color: #345342;
+}
+
+body.dark-mode .form-group label {
+    color: #b9c9bf;
+}
+
+body.dark-mode .close-btn {
+    background: #26392f;
+    color: white;
+}
+
+body.dark-mode .scanner-box {
+    background: #182b21;
+    border-color: #385744;
+}
+
+body.dark-mode .scanner-box p {
+    color: #a8bbb0;
+}
+
+body.dark-mode .roadmap-item {
+    background: #20352a;
+    color: #dce9e1;
+}
+
+body.dark-mode .donut::after {
+    background: #14231b;
+}
+
+body.dark-mode .legend-item {
+    color: #dce9e1;
+}
+
+body.dark-mode footer {
+    background: #08120d;
+}
+
+body.dark-mode .toast {
+    background: #eaf7ef;
+    color: #123d2b;
+}
+
+
+/* Dark mode mobile menu */
+
+@media (max-width: 850px) {
+
+    body.dark-mode .nav-links {
+        background: #14231b;
+        border-color: #395b44;
+    }
+
+}
+
+
+/* Team responsive */
+
+@media (max-width: 850px) {
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">🥬</div>
+        Smart Kitchen
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#kitchen">My Kitchen</a>
+        <a href="#freshness">Freshness</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div class="nav-right">
+    <button class="icon-btn" onclick="toggleDarkMode()" id="themeButton">
+        🌙
+    </button>
+
+    <button class="icon-btn" onclick="showNotifications()">
+        🔔
+    </button>
+
+    <div class="profile">A</div>
+</div>
+
+    <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
+
+</nav>
+
+
+<main class="container">
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="dashboard">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <div class="badge">
+                ✨ Smart Kitchen Management
+            </div>
+
+            <h1>
+                Know What's <span>Fresh.</span><br>
+                Cook What's Left.
+            </h1>
+
+            <p>
+                Manage your kitchen inventory, track food freshness,
+                reduce food waste and discover what you can cook with
+                the ingredients you already have.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-btn"
+                    onclick="openAddModal()">
+                    + Add Food Item
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="openOCRModal()">
+                    📷 Scan with OCR
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+            🥗
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section>
+
+    <div class="section-header">
+
+        <div>
+            <h2>Kitchen Overview</h2>
+            <p>Here's what's happening in your kitchen.</p>
+        </div>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+                <span>Total Items</span>
+
+                <div class="stat-icon blue">
+                    📦
+                </div>
+            </div>
+
+            <div class="stat-number" id="totalItems">0</div>
+            <div class="stat-label">Items in your kitchen</div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+                <span>Fresh Items</span>
+
+                <div class="stat-icon green">
+                    🟢
+                </div>
+            </div>
+
+            <div class="stat-number" id="freshItems">0</div>
+            <div class="stat-label">Good to consume</div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+                <span>Expiring Soon</span>
+
+                <div class="stat-icon yellow">
+                    ⚠️
+                </div>
+            </div>
+
+            <div class="stat-number" id="expiringItems">0</div>
+            <div class="stat-label">Use these soon</div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+                <span>Expired</span>
+
+                <div class="stat-icon red">
+                    🔴
+                </div>
+            </div>
+
+            <div class="stat-number" id="expiredItems">0</div>
+            <div class="stat-label">Needs attention</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FRESHNESS
+========================= -->
+
+<section id="freshness">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Kitchen Freshness</h2>
+            <p>Understand the freshness of your inventory.</p>
+        </div>
+
+    </div>
+
+    <div class="overview-grid">
+
+        <div class="panel">
+
+            <h3>Freshness Overview</h3>
+
+            <div class="donut-area">
+
+                <div class="donut">
+
+                    <div class="donut-center">
+                        <strong id="freshPercent">0%</strong>
+                        <span>Fresh</span>
+                    </div>
+
+                </div>
+
+                <div class="legend">
+
+                    <div class="legend-item">
+                        <span class="dot green-dot"></span>
+                        Fresh
+                        <strong id="legendFresh">0</strong>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="dot yellow-dot"></span>
+                        Expiring Soon
+                        <strong id="legendExpiring">0</strong>
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="dot red-dot"></span>
+                        Expired
+                        <strong id="legendExpired">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <h3>💡 Smart Kitchen Tip</h3>
+
+            <p style="color:#6c7b73;line-height:1.7;margin-top:15px;font-size:14px;">
+                Keep items that expire soon at the front of your
+                refrigerator or pantry. This simple habit can help
+                reduce food waste.
+            </p>
+
+            <div style="
+                margin-top:20px;
+                background:#edf8f1;
+                padding:15px;
+                border-radius:12px;
+                color:#176b45;
+                font-size:13px;
+                font-weight:600;
+            ">
+                🌱 Small changes can make your kitchen more sustainable.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INVENTORY
+========================= -->
+
+<section id="kitchen">
+
+    <div class="section-header">
+
+        <div>
+            <h2>My Kitchen</h2>
+            <p>Manage everything currently available in your kitchen.</p>
+        </div>
+
+        <button class="primary-btn" onclick="openAddModal()">
+            + Add Item
+        </button>
+
+    </div>
+
+
+    <div class="inventory-controls">
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search your kitchen..."
+                oninput="renderInventory()">
+        </div>
+
+        <select
+            class="filter-select"
+            id="statusFilter"
+            onchange="renderInventory()">
+
+            <option value="all">All Status</option>
+            <option value="Fresh">Fresh</option>
+            <option value="Expiring Soon">Expiring Soon</option>
+            <option value="Expired">Expired</option>
+
+        </select>
+
+        <select
+            class="filter-select"
+            id="categoryFilter"
+            onchange="renderInventory()">
+
+            <option value="all">All Categories</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Bakery">Bakery</option>
+            <option value="Grains">Grains</option>
+            <option value="Other">Other</option>
+
+        </select>
+
+    </div>
+
+
+    <div
+        class="inventory-grid"
+        id="inventoryGrid">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RECIPES
+========================= -->
+
+<section id="recipes">
+
+    <div class="section-header">
+
+        <div>
+            <h2>🍳 Cook What's Left</h2>
+            <p>Simple ideas based on ingredients available in your kitchen.</p>
+        </div>
+
+    </div>
+
+
+    <div class="recipe-grid">
+
+        <div class="recipe-card">
+
+            <div class="recipe-image">
+                🥪
+            </div>
+
+            <div class="recipe-body">
+
+                <h3>Vegetable Sandwich</h3>
+
+                <p>
+                    Bread, tomato, onion and other fresh vegetables.
+                </p>
+
+                <span class="recipe-tag">
+                    Uses available ingredients
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="recipe-card">
+
+            <div class="recipe-image">
+                🍛
+            </div>
+
+            <div class="recipe-body">
+
+                <h3>Aloo Tomato Curry</h3>
+
+                <p>
+                    Potato, tomato and onion combined into a simple curry.
+                </p>
+
+                <span class="recipe-tag">
+                    Quick Recipe
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="recipe-card">
+
+            <div class="recipe-image">
+                🍞
+            </div>
+
+            <div class="recipe-body">
+
+                <h3>Vegetable Toast</h3>
+
+                <p>
+                    A quick snack using bread and vegetables already available.
+                </p>
+
+                <span class="recipe-tag">
+                    Reduce Food Waste
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     OCR FUTURE FEATURE
+========================= -->
+
+<section>
+
+    <div class="ocr-section">
+
+        <div>
+
+            <div class="coming-badge">
+                🚀 FUTURE FEATURE
+            </div>
+
+            <h2>Smart OCR Food Scanner</h2>
+
+            <p>
+                In the future, Smart Kitchen will allow you to capture
+                or upload an image of your groceries. OCR and image
+                recognition can then identify food items automatically
+                and help analyze their freshness.
+            </p>
+
+            <button
+                class="ocr-button"
+                onclick="openOCRModal()">
+                Explore Future Scanner →
+            </button>
+
+        </div>
+
+        <div class="ocr-icon">
+            📷
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="section-header">
+
+        <div>
+            <h2>About Smart Kitchen</h2>
+            <p>Our goal is simple: less waste, smarter kitchens.</p>
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <div class="about-card">
+
+            <h3>🎯 Project Objective</h3>
+
+            <p>
+                Smart Kitchen is designed to help users manage their
+                kitchen inventory, monitor food freshness and make
+                better use of ingredients before they expire.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>✨ Current Features</h3>
+
+            <div class="feature-list">
+
+                <div>✅ Manual food item entry</div>
+                <div>✅ Expiry date tracking</div>
+                <div>✅ Automatic freshness calculation</div>
+                <div>✅ Search and filtering</div>
+                <div>✅ Kitchen inventory management</div>
+                <div>✅ Recipe suggestions</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>🚀 Future Development</h3>
+
+            <div class="feature-list">
+
+                <div>🔒 OCR food recognition</div>
+                <div>🔒 Image-based freshness detection</div>
+                <div>🔒 AI recipe recommendations</div>
+                <div>🔒 Smart expiry notifications</div>
+                <div>🔒 Grocery planning</div>
+                <div>🔒 Food waste analytics</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>👨‍💻 Project</h3>
+
+            <p>
+                Developed as a college mini project focused on combining
+                web technology, artificial intelligence concepts and
+                sustainable kitchen management.
+            </p>
+
+            <div style="
+                margin-top:20px;
+                padding:15px;
+                background:#edf7f0;
+                border-radius:12px;
+                color:#176b45;
+                font-weight:700;
+                font-size:13px;
+            ">
+                Smart Kitchen — Know What's Fresh, Cook What's Left
+            </div>
+
+            <div class="about-card team-card">
+
+    <h3>👨‍💻 Our Team</h3>
+
+    <p>
+        Meet the team behind Smart Kitchen – Know What's Fresh,
+        Cook What's Left.
+    </p>
+
+    <div class="team-grid">
+
+        <div class="team-member">
+            <div class="member-avatar">AS</div>
+            <h4>Abhyam Shivhare</h4>
+            <span>Team Member</span>
+        </div>
+
+        <div class="team-member">
+            <div class="member-avatar">AS</div>
+            <h4>Akshat Shesha</h4>
+            <span>Team Member</span>
+        </div>
+
+        <div class="team-member">
+            <div class="member-avatar">AS</div>
+            <h4>Aryan Singh</h4>
+            <span>Team Member</span>
+        </div>
+
+        <div class="team-member">
+            <div class="member-avatar">AS</div>
+            <h4>Aary Seth</h4>
+            <span>Team Member</span>
+        </div>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     ADD FOOD MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="addModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Add Food Item</h2>
+                <p style="color:#78877f;font-size:12px;margin-top:4px;">
+                    Add your kitchen item manually.
+                </p>
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeAddModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="foodForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label>Food Name *</label>
+
+                    <input
+                        type="text"
+                        id="foodName"
+                        placeholder="e.g. Tomato"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Category *</label>
+
+                    <select id="foodCategory" required>
+
+                        <option value="">Select category</option>
+                        <option>Fruits</option>
+                        <option>Vegetables</option>
+                        <option>Dairy</option>
+                        <option>Bakery</option>
+                        <option>Grains</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Quantity *</label>
+
+                    <input
+                        type="number"
+                        id="foodQuantity"
+                        min="0"
+                        step="0.1"
+                        placeholder="e.g. 2"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Unit *</label>
+
+                    <select id="foodUnit" required>
+
+                        <option value="">Select unit</option>
+                        <option>kg</option>
+                        <option>g</option>
+                        <option>litre</option>
+                        <option>ml</option>
+                        <option>pieces</option>
+                        <option>packets</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Purchase Date *</label>
+
+                    <input
+                        type="date"
+                        id="purchaseDate"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Expiry Date *</label>
+
+                    <input
+                        type="date"
+                        id="expiryDate"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Storage Location</label>
+
+                    <select id="storageLocation">
+
+                        <option>Refrigerator</option>
+                        <option>Freezer</option>
+                        <option>Pantry</option>
+                        <option>Kitchen Shelf</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>Notes</label>
+
+                    <textarea
+                        id="foodNotes"
+                        placeholder="Optional notes..."></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeAddModal()">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+                    Add to Kitchen
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     OCR MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="ocrModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>📷 Smart OCR Scanner</h2>
+
+                <p style="
+                    color:#78877f;
+                    font-size:12px;
+                    margin-top:4px;
+                ">
+                    Future AI-powered feature
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeOCRModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="scanner-box">
+
+            <div class="scanner-icon">
+                📷
+            </div>
+
+            <div class="coming-badge">
+                🚀 COMING SOON
+            </div>
+
+            <h3>Smart Scanner is under development</h3>
+
+            <p>
+                In the future, you will be able to upload or capture
+                an image of your food items. The system will identify
+                the items automatically and help analyze their freshness.
+            </p>
+
+            <button
+                class="secondary-btn"
+                style="margin-top:18px;opacity:0.6;cursor:not-allowed;"
+                disabled>
+                🔒 Upload Image
+            </button>
+
+            <button
+                class="secondary-btn"
+                style="margin-top:10px;opacity:0.6;cursor:not-allowed;"
+                disabled>
+                🔒 Open Camera
+            </button>
+
+        </div>
+
+
+        <div class="roadmap">
+
+            <div class="roadmap-item">
+                📷 Step 1 — Capture / Upload Image
+            </div>
+
+            <div class="roadmap-item">
+                🔍 Step 2 — OCR / Image Recognition
+            </div>
+
+            <div class="roadmap-item">
+                🥕 Step 3 — Identify Food Item
+            </div>
+
+            <div class="roadmap-item">
+                📅 Step 4 — Analyze Freshness
+            </div>
+
+            <div class="roadmap-item">
+                🟢 Step 5 — Fresh / Expiring / Expired
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>🥬 Smart Kitchen</strong>
+
+    <p>
+        Know What's Fresh • Cook What's Left • Reduce Food Waste
+    </p>
+
+    <p style="margin-top:15px;">
+        College Mini Project • Frontend Prototype
+    </p>
+
+</footer>
+
+
+<script>
+
+/* ==========================================
+   SAMPLE DATA
+========================================== */
+
+const defaultItems = [
+
+    {
+        id: 1,
+        name: "Milk",
+        category: "Dairy",
+        quantity: 2,
+        unit: "litre",
+        purchaseDate: "2026-10-04",
+        expiryDate: "2026-10-07",
+        storage: "Refrigerator",
+        notes: "Keep refrigerated",
+        icon: "🥛"
+    },
+
+    {
+        id: 2,
+        name: "Tomato",
+        category: "Vegetables",
+        quantity: 1,
+        unit: "kg",
+        purchaseDate: "2026-10-03",
+        expiryDate: "2026-10-09",
+        storage: "Refrigerator",
+        notes: "",
+        icon: "🍅"
+    },
+
+    {
+        id: 3,
+        name: "Potato",
+        category: "Vegetables",
+        quantity: 2,
+        unit: "kg",
+        purchaseDate: "2026-09-28",
+        expiryDate: "2026-10-20",
+        storage: "Pantry",
+        notes: "",
+        icon: "🥔"
+    },
+
+    {
+        id: 4,
+        name: "Apple",
+        category: "Fruits",
+        quantity: 6,
+        unit: "pieces",
+        purchaseDate: "2026-10-02",
+        expiryDate: "2026-10-06",
+        storage: "Refrigerator",
+        notes: "",
+        icon: "🍎"
+    },
+
+    {
+        id: 5,
+        name: "Bread",
+        category: "Bakery",
+        quantity: 1,
+        unit: "packets",
+        purchaseDate: "2026-10-01",
+        expiryDate: "2026-10-04",
+        storage: "Kitchen Shelf",
+        notes: "",
+        icon: "🍞"
+    },
+
+    {
+        id: 6,
+        name: "Rice",
+        category: "Grains",
+        quantity: 5,
+        unit: "kg",
+        purchaseDate: "2026-09-15",
+        expiryDate: "2027-01-10",
+        storage: "Pantry",
+        notes: "",
+        icon: "🍚"
+    },
+
+    {
+        id: 7,
+        name: "Paneer",
+        category: "Dairy",
+        quantity: 250,
+        unit: "g",
+        purchaseDate: "2026-10-04",
+        expiryDate: "2026-10-06",
+        storage: "Refrigerator",
+        notes: "",
+        icon: "🧀"
+    },
+
+    {
+        id: 8,
+        name: "Banana",
+        category: "Fruits",
+        quantity: 5,
+        unit: "pieces",
+        purchaseDate: "2026-10-01",
+        expiryDate: "2026-10-06",
+        storage: "Kitchen Shelf",
+        notes: "",
+        icon: "🍌"
+    },
+
+    {
+        id: 9,
+        name: "Carrot",
+        category: "Vegetables",
+        quantity: 500,
+        unit: "g",
+        purchaseDate: "2026-10-02",
+        expiryDate: "2026-10-08",
+        storage: "Refrigerator",
+        notes: "",
+        icon: "🥕"
+    },
+
+    {
+        id: 10,
+        name: "Onion",
+        category: "Vegetables",
+        quantity: 1,
+        unit: "kg",
+        purchaseDate: "2026-09-25",
+        expiryDate: "2026-09-30",
+        storage: "Pantry",
+        notes: "",
+        icon: "🧅"
+    }
+
+];
+
+
+/* ==========================================
+   LOCAL STORAGE
+========================================== */
+
+let items = JSON.parse(localStorage.getItem("smartKitchenItems"));
+
+if (!items || items.length === 0) {
+    items = defaultItems;
+    saveItems();
+}
+
+
+function saveItems() {
+
+    localStorage.setItem(
+        "smartKitchenItems",
+        JSON.stringify(items)
+    );
+
+}
+
+
+/* ==========================================
+   FRESHNESS CALCULATION
+========================================== */
+
+function getFreshness(expiryDate) {
+
+    const today = new Date();
+
+    today.setHours(0,0,0,0);
+
+    const expiry = new Date(expiryDate);
+
+    expiry.setHours(0,0,0,0);
+
+    const difference =
+        Math.ceil(
+            (expiry - today) /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    if (difference < 0) {
+
+        return "Expired";
+
+    }
+
+    if (difference <= 2) {
+
+        return "Expiring Soon";
+
+    }
+
+    return "Fresh";
+
+}
+
+
+/* ==========================================
+   INVENTORY RENDER
+========================================== */
+
+function renderInventory() {
+
+    const grid =
+        document.getElementById("inventoryGrid");
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const status =
+        document
+        .getElementById("statusFilter")
+        .value;
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const filtered =
+        items.filter(item => {
+
+            const freshness =
+                getFreshness(item.expiryDate);
+
+            const matchesSearch =
+                item.name
+                .toLowerCase()
+                .includes(search);
+
+            const matchesStatus =
+                status === "all" ||
+                freshness === status;
+
+            const matchesCategory =
+                category === "all" ||
+                item.category === category;
+
+            return (
+                matchesSearch &&
+                matchesStatus &&
+                matchesCategory
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        grid.innerHTML = `
+
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                background:white;
+                padding:50px;
+                border-radius:20px;
+                border:1px solid #e5eee8;
+            ">
+
+                <div style="font-size:50px;">🥗</div>
+
+                <h3 style="margin-top:12px;">
+                    No food items found
+                </h3>
+
+                <p style="
+                    color:#718078;
+                    font-size:13px;
+                    margin-top:7px;
+                ">
+                    Try another search or add a new item.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        filtered.map(item => {
+
+            const freshness =
+                getFreshness(item.expiryDate);
+
+            const statusClass =
+                freshness === "Fresh"
+                    ? "fresh"
+                    : freshness === "Expiring Soon"
+                        ? "expiring"
+                        : "expired";
+
+
+            return `
+
+                <div class="food-card">
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteItem(${item.id})">
+                        ×
+                    </button>
+
+                    <div class="food-icon">
+                        ${item.icon || "🍴"}
+                    </div>
+
+                    <div class="food-name">
+                        ${item.name}
+                    </div>
+
+                    <div class="food-category">
+                        ${item.category}
+                    </div>
+
+
+                    <div class="food-details">
+
+                        <div class="detail">
+                            <span>Quantity</span>
+                            <strong>
+                                ${item.quantity} ${item.unit}
+                            </strong>
+                        </div>
+
+                        <div class="detail">
+                            <span>Expiry</span>
+                            <strong>
+                                ${formatDate(item.expiryDate)}
+                            </strong>
+                        </div>
+
+                        <div class="detail">
+                            <span>Storage</span>
+                            <strong>
+                                ${item.storage}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <span class="status ${statusClass}">
+                        ${
+                            freshness === "Fresh"
+                                ? "🟢"
+                                : freshness === "Expiring Soon"
+                                    ? "🟡"
+                                    : "🔴"
+                        }
+                        ${freshness}
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* ==========================================
+   STATISTICS
+========================================== */
+
+function updateStatistics() {
+
+    const total =
+        items.length;
+
+    const fresh =
+        items.filter(
+            item =>
+                getFreshness(item.expiryDate) === "Fresh"
+        ).length;
+
+    const expiring =
+        items.filter(
+            item =>
+                getFreshness(item.expiryDate) === "Expiring Soon"
+        ).length;
+
+    const expired =
+        items.filter(
+            item =>
+                getFreshness(item.expiryDate) === "Expired"
+        ).length;
+
+
+    document.getElementById("totalItems")
+        .textContent = total;
+
+    document.getElementById("freshItems")
+        .textContent = fresh;
+
+    document.getElementById("expiringItems")
+        .textContent = expiring;
+
+    document.getElementById("expiredItems")
+        .textContent = expired;
+
+
+    document.getElementById("legendFresh")
+        .textContent = fresh;
+
+    document.getElementById("legendExpiring")
+        .textContent = expiring;
+
+    document.getElementById("legendExpired")
+        .textContent = expired;
+
+
+    const percent =
+        total === 0
+            ? 0
+            : Math.round(
+                (fresh / total) * 100
+            );
+
+    document.getElementById("freshPercent")
+        .textContent = percent + "%";
+
+}
+
+
+/* ==========================================
+   DELETE ITEM
+========================================== */
+
+function deleteItem(id) {
+
+    const item =
+        items.find(
+            item => item.id === id
+        );
+
+    if (!item) return;
+
+
+    if (
+        confirm(
+            `Remove ${item.name} from your kitchen?`
+        )
+    ) {
+
+        items =
+            items.filter(
+                item => item.id !== id
+            );
+
+        saveItems();
+
+        renderInventory();
+
+        updateStatistics();
+
+        showToast(
+            `${item.name} removed from kitchen.`
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   ADD ITEM
+========================================== */
+
+document
+    .getElementById("foodForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                .getElementById("foodName")
+                .value
+                .trim();
+
+            const category =
+                document
+                .getElementById("foodCategory")
+                .value;
+
+            const quantity =
+                document
+                .getElementById("foodQuantity")
+                .value;
+
+            const unit =
+                document
+                .getElementById("foodUnit")
+                .value;
+
+            const purchaseDate =
+                document
+                .getElementById("purchaseDate")
+                .value;
+
+            const expiryDate =
+                document
+                .getElementById("expiryDate")
+                .value;
+
+            const storage =
+                document
+                .getElementById("storageLocation")
+                .value;
+
+            const notes =
+                document
+                .getElementById("foodNotes")
+                .value;
+
+
+            if (
+                new Date(expiryDate) <
+                new Date(purchaseDate)
+            ) {
+
+                alert(
+                    "Expiry date cannot be before purchase date."
+                );
+
+                return;
+
+            }
+
+
+            const iconMap = {
+
+                Fruits: "🍎",
+                Vegetables: "🥕",
+                Dairy: "🥛",
+                Bakery: "🍞",
+                Grains: "🍚",
+                Other: "🍴"
+
+            };
+
+
+            const newItem = {
+
+                id: Date.now(),
+
+                name,
+
+                category,
+
+                quantity,
+
+                unit,
+
+                purchaseDate,
+
+                expiryDate,
+
+                storage,
+
+                notes,
+
+                icon:
+                    iconMap[category] || "🍴"
+
+            };
+
+
+            items.unshift(newItem);
+
+            saveItems();
+
+            renderInventory();
+
+            updateStatistics();
+
+            closeAddModal();
+
+            document
+                .getElementById("foodForm")
+                .reset();
+
+            showToast(
+                `${name} added successfully!`
+            );
+
+
+            document
+                .getElementById("kitchen")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+    );
+
+
+/* ==========================================
+   MODALS
+========================================== */
+
+function openAddModal() {
+
+    document
+        .getElementById("addModal")
+        .classList.add("active");
+
+}
+
+
+function closeAddModal() {
+
+    document
+        .getElementById("addModal")
+        .classList.remove("active");
+
+}
+
+
+function openOCRModal() {
+
+    document
+        .getElementById("ocrModal")
+        .classList.add("active");
+
+}
+
+
+function closeOCRModal() {
+
+    document
+        .getElementById("ocrModal")
+        .classList.remove("active");
+
+}
+
+
+/* ==========================================
+   MENU
+========================================== */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("active");
+
+}
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
+
+
+/* ==========================================
+   NOTIFICATIONS
+========================================== */
+
+function showNotifications() {
+
+    const expiring =
+        items.filter(
+            item =>
+                getFreshness(item.expiryDate)
+                === "Expiring Soon"
+        ).length;
+
+    const expired =
+        items.filter(
+            item =>
+                getFreshness(item.expiryDate)
+                === "Expired"
+        ).length;
+
+
+    alert(
+        `Kitchen Notifications\n\n` +
+        `🟡 ${expiring} item(s) expiring soon.\n` +
+        `🔴 ${expired} item(s) expired.`
+    );
+
+}
+
+
+/* ==========================================
+   DATE FORMAT
+========================================== */
+
+function formatDate(dateString) {
+
+    const date =
+        new Date(dateString);
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* ==========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
+
+document
+    .getElementById("addModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+                closeAddModal();
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("ocrModal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+                closeOCRModal();
+            }
+
+        }
+    );
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+renderInventory();
+
+updateStatistics();
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    const isDark =
+        document.body.classList.contains("dark-mode");
+
+    localStorage.setItem(
+        "smartKitchenDarkMode",
+        isDark
+    );
+
+    updateThemeButton();
+}
+
+
+function updateThemeButton() {
+
+    const button =
+        document.getElementById("themeButton");
+
+    if (!button) return;
+
+    const isDark =
+        document.body.classList.contains("dark-mode");
+
+    button.textContent =
+        isDark ? "☀️" : "🌙";
+
+    button.title =
+        isDark
+            ? "Switch to Light Mode"
+            : "Switch to Dark Mode";
+}
+
+
+/* Load saved theme */
+
+const savedDarkMode =
+    localStorage.getItem(
+        "smartKitchenDarkMode"
+    );
+
+if (savedDarkMode === "true") {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+updateThemeButton();
+</script>
+
+</body>
+</html>
+```
