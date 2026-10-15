@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -372,12 +372,11 @@ section {
     height: 170px;
     border-radius: 50%;
     background: conic-gradient(
-        #198754 0deg 240deg,
-        #f2b84b 240deg 310deg,
-        #e45757 310deg 360deg
+        #dce8e0 0deg 360deg
     );
     position: relative;
     flex-shrink: 0;
+    transition: background 0.4s ease;
 }
 
 .donut::after {
@@ -2593,60 +2592,79 @@ function renderInventory() {
 
 function updateStatistics() {
 
-    const total =
-        items.length;
+    // Count all items by their calculated freshness
+    const total = items.length;
 
-    const fresh =
-        items.filter(
-            item =>
-                getFreshness(item.expiryDate) === "Fresh"
-        ).length;
+    const fresh = items.filter(
+        item => getFreshness(item.expiryDate) === "Fresh"
+    ).length;
 
-    const expiring =
-        items.filter(
-            item =>
-                getFreshness(item.expiryDate) === "Expiring Soon"
-        ).length;
+    const expiring = items.filter(
+        item => getFreshness(item.expiryDate) === "Expiring Soon"
+    ).length;
 
-    const expired =
-        items.filter(
-            item =>
-                getFreshness(item.expiryDate) === "Expired"
-        ).length;
+    const expired = items.filter(
+        item => getFreshness(item.expiryDate) === "Expired"
+    ).length;
 
 
-    document.getElementById("totalItems")
-        .textContent = total;
-
-    document.getElementById("freshItems")
-        .textContent = fresh;
-
-    document.getElementById("expiringItems")
-        .textContent = expiring;
-
-    document.getElementById("expiredItems")
-        .textContent = expired;
+    // Update dashboard statistics
+    document.getElementById("totalItems").textContent = total;
+    document.getElementById("freshItems").textContent = fresh;
+    document.getElementById("expiringItems").textContent = expiring;
+    document.getElementById("expiredItems").textContent = expired;
 
 
-    document.getElementById("legendFresh")
-        .textContent = fresh;
-
-    document.getElementById("legendExpiring")
-        .textContent = expiring;
-
-    document.getElementById("legendExpired")
-        .textContent = expired;
+    // Update chart legend counts
+    document.getElementById("legendFresh").textContent = fresh;
+    document.getElementById("legendExpiring").textContent = expiring;
+    document.getElementById("legendExpired").textContent = expired;
 
 
-    const percent =
-        total === 0
-            ? 0
-            : Math.round(
-                (fresh / total) * 100
-            );
+    // Calculate percentages
+    const freshPercent = total
+        ? (fresh / total) * 100
+        : 0;
 
-    document.getElementById("freshPercent")
-        .textContent = percent + "%";
+    const expiringPercent = total
+        ? (expiring / total) * 100
+        : 0;
+
+    const expiredPercent = total
+        ? (expired / total) * 100
+        : 0;
+
+
+    // Display the fresh percentage
+    document.getElementById("freshPercent").textContent =
+        Math.round(freshPercent) + "%";
+
+
+    // Convert percentages into degrees for the pie chart
+    const freshDegrees = (fresh / (total || 1)) * 360;
+    const expiringDegrees = (expiring / (total || 1)) * 360;
+
+    const freshEnd = freshDegrees;
+    const expiringEnd = freshDegrees + expiringDegrees;
+
+
+    // Update the actual pie chart
+    const donut = document.querySelector(".donut");
+
+    if (total === 0) {
+
+        donut.style.background =
+            "conic-gradient(#dce8e0 0deg 360deg)";
+
+    } else {
+
+        donut.style.background = `conic-gradient(
+            #198754 0deg ${freshEnd}deg,
+            #f2b84b ${freshEnd}deg ${expiringEnd}deg,
+            #e45757 ${expiringEnd}deg 360deg
+        )`;
+
+    }
 
 }
 
@@ -3052,4 +3070,3 @@ updateThemeButton();
 
 </body>
 </html>
-```
